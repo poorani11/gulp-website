@@ -1,0 +1,22 @@
+{
+  "name": "gulp-website",
+  "version": "1.0.0",
+  "description": "A basic website using guljs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poorani11/gulp-website.git"
+  },
+  "author": "poorani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/poorani11/gulp-website/issues"
+  },
+  "homepage": "https://github.com/poorani11/gulp-website#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}

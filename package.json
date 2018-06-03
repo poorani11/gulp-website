@@ -16,7 +16,8 @@
     "url": "https://github.com/poorani11/gulp-website/issues"
   },
   "homepage": "https://github.com/poorani11/gulp-website#readme",
-  "dependencies": {
-    "gulp": "^3.9.1"
+  "devDependencies": {
+      "gulp": "^3.9.1",
+    "gulp-uglify": "^3.0.0"
   }
 }

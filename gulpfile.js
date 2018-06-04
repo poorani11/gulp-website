@@ -7,6 +7,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
+var del = require('del');
 
 //file paths
 var DIST_PATH = 'public/dist';
@@ -100,7 +101,13 @@ gulp.task('templates', function () {
 		.pipe(livereload());
 });
 
-gulp.task('default',['images','templates','styles','scripts'] , function(){
+gulp.task('clean', function(){
+    return del.sync([
+        DIST_PATH
+    ])
+})
+
+gulp.task('default',['clean','images','templates','styles','scripts'] , function(){
     console.log('starting default task');
 });
 

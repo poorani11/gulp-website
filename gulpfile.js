@@ -8,6 +8,7 @@ var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
 var del = require('del');
+var zip = require('gulp-zip');
 
 //file paths
 var DIST_PATH = 'public/dist';
@@ -110,6 +111,12 @@ gulp.task('clean', function(){
 gulp.task('default',['clean','images','templates','styles','scripts'] , function(){
     console.log('starting default task');
 });
+
+gulp.task('export', function(){
+    return gulp.src('public/**/*')
+               .pipe(zip('website.zip'))
+               .pipe(gulp.dest('./'))
+})
 
 gulp.task('watch',['default'], function(){
     console.log('starting watch task');

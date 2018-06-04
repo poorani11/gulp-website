@@ -12,6 +12,13 @@ var babel = require('gulp-babel');
 var DIST_PATH = 'public/dist';
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
 var CSS_PATH = 'public/css/**/*.css';
+var TEMPLATES_PATH = 'templates/**/*.hbs';
+
+// Handlebars plugins
+var handlebars = require('gulp-handlebars');
+var handlebarsLib = require('handlebars');
+var declare = require('gulp-declare');
+var wrap = require('gulp-wrap');
 
 //Styles
 gulp.task('styles', function() {
@@ -60,6 +67,22 @@ gulp.task('images', function(){
     console.log('Starting images tasks');
 })
 
+//templates
+gulp.task('templates', function () {
+	return gulp.src(TEMPLATES_PATH)
+		.pipe(handlebars({
+			handlebars: handlebarsLib
+		}))
+		.pipe(wrap('Handlebars.template(<%= contents %>)'))
+		.pipe(declare({
+			namespace: 'templates',
+			noRedeclare: true
+		}))
+		.pipe(concat('templates.js'))
+		.pipe(gulp.dest(DIST_PATH))
+		.pipe(livereload());
+});
+
 gulp.task('default', function(){
     console.log('starting default task');
 });
@@ -70,6 +93,7 @@ gulp.task('watch', function(){
     livereload.listen();
     gulp.watch(SCRIPTS_PATH, ['scripts']);
     gulp.watch(CSS_PATH, ['styles']);
+    gulp.watch(TEMPLATES_PATH, ['templates']);
 });
 
 
